@@ -31,7 +31,7 @@ h1,h2,h3,.h{font-family:var(--head);font-weight:400;letter-spacing:-.02em;line-h
 .topstrip a{color:#fff6d6;text-decoration:none}
 .topstrip .left{display:flex;gap:22px;flex-wrap:wrap}
 .topstrip .right{display:flex;gap:18px}
-@media (max-width:760px){.topstrip .left span:not(:first-child){display:none}.topstrip .right a:not(.tel){display:none}}
+@media (max-width:760px){.topstrip{font-size:12px}.topstrip .wrap{justify-content:center}.topstrip .left{display:none}.topstrip .right a{white-space:nowrap}.topstrip .right a[href$='faq.html']{display:none}}
 
 /* header */
 header.site{position:sticky;top:0;z-index:50;background:rgba(255,242,199,.94);backdrop-filter:blur(8px);border-bottom:2px solid var(--ink)}
@@ -71,7 +71,7 @@ nav.main .hot::after{content:"NEW";font:700 9px/1 var(--body);background:var(--c
 /* hero */
 .hero{padding:56px 0 0;overflow:hidden}
 .hero .grid{display:grid;grid-template-columns:1.05fr 1fr;gap:30px;align-items:center}
-.hero h1{font-size:clamp(44px,7vw,92px);color:var(--ink)}
+.hero h1{font-size:clamp(42px,6.2vw,84px);color:var(--ink)}
 .hero h1 em{font-style:normal;color:var(--coral)}
 .hero p.lead{font-size:18px;max-width:520px;color:var(--ink-2);margin:22px 0 28px}
 .hero .ctas{display:flex;gap:12px;flex-wrap:wrap}
@@ -228,6 +228,8 @@ footer.site{background:var(--cream-2);border-top:2px solid var(--ink)}
 .variant span{font:400 22px/1.2 var(--head)}
 .buybox{display:flex;gap:10px;flex-wrap:wrap;align-items:center;margin-bottom:10px}
 .buybox .btn{font-size:16px;padding:16px 26px}
+.buybox .wish{position:static;width:56px;height:56px;padding:0;justify-content:center}
+.buybox .wish:hover{box-shadow:0 6px 0 var(--ink)}
 .note{font-size:12.5px;color:var(--ink-2)}
 .badges{display:flex;gap:8px;flex-wrap:wrap;margin:22px 0}
 .badges span{font-size:13px;font-weight:600;background:#fff;border:1.5px solid var(--ink);border-radius:999px;padding:6px 12px}
