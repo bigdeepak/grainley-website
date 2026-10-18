@@ -10,7 +10,7 @@
 *{box-sizing:border-box}
 html{scroll-behavior:smooth}
 body{margin:0;font-family:var(--body);color:var(--ink);background:var(--cream);line-height:1.55;font-size:16px;-webkit-font-smoothing:antialiased}
-img{max-width:100%;display:block}
+img{max-width:100%;height:auto;display:block}
 a{color:inherit}
 h1,h2,h3,.h{font-family:var(--head);font-weight:400;letter-spacing:-.02em;line-height:1.02;margin:0}
 .wrap{max-width:1200px;margin:0 auto;padding:0 20px}
@@ -78,7 +78,7 @@ nav.main .hot::after{content:"NEW";font:700 9px/1 var(--body);background:var(--c
 .hero .eyebrow{display:inline-flex;align-items:center;gap:8px;font-weight:600;font-size:14px;background:#fff;border:2px solid var(--ink);border-radius:999px;padding:6px 14px 6px 6px;margin-bottom:22px}
 .hero .eyebrow b{background:var(--coral);color:#fff;border-radius:999px;padding:4px 10px;font-size:12px}
 .hero .visual{position:relative}
-.hero .visual img.family{width:100%;filter:drop-shadow(0 26px 30px rgba(90,60,10,.25))}
+.hero .visual img.family{width:100%;height:auto;filter:drop-shadow(0 26px 30px rgba(90,60,10,.25))}
 .hero .stamp{position:absolute;top:-6px;right:4%;width:126px;height:126px;border-radius:50%;background:var(--coral);color:#fff;display:grid;place-items:center;text-align:center;font:400 17px/1.05 var(--head);transform:rotate(10deg);border:3px solid var(--ink);box-shadow:5px 5px 0 var(--ink)}
 .valley{height:150px;background:url(../img/veggie-valley.webp) center/auto 100% repeat-x;border-top:2px solid var(--ink);margin-top:20px}
 @media (max-width:860px){.hero .grid{grid-template-columns:1fr}.hero{padding-top:34px}.hero .stamp{width:96px;height:96px;font-size:13px}.valley{height:100px}}
