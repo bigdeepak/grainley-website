@@ -79,6 +79,60 @@
     document.addEventListener('keydown', function (e) { if (e.key === 'Escape') lb.classList.remove('open'); });
   }
 
+
+  // ---------- cart (stored in this browser; synced to the account when logged in) ----------
+  var ITEMS = window.GRAINLEY_ITEMS || {}, TAG = window.GRAINLEY_TAG || '';
+  var cartStore = {
+    get: function () { try { var c = JSON.parse(localStorage.getItem('grainley-cart') || '{}'); return (c && typeof c === 'object' && !Array.isArray(c)) ? c : {}; } catch (e) { return {}; } },
+    set: function (v) { try { localStorage.setItem('grainley-cart', JSON.stringify(v)); } catch (e) {} document.dispatchEvent(new CustomEvent('cart-change', { detail: v })); }
+  };
+  window.GrainleyCart = cartStore;
+  function cartCount(c) { return Object.keys(c).reduce(function (n, k) { return n + (c[k] || 0); }, 0); }
+  function refreshCart() {
+    var n = cartCount(cartStore.get());
+    $$('.cart-count').forEach(function (el) { el.textContent = n; el.style.display = n ? 'block' : 'none'; });
+    if (document.body.dataset.page === 'cart') renderCart();
+  }
+  document.addEventListener('click', function (e) {
+    var b = e.target.closest('.add-cart'); if (!b) return;
+    e.preventDefault();
+    var a = b.dataset.asin, c = cartStore.get(); if (!ITEMS[a]) return;
+    c[a] = Math.min((c[a] || 0) + 1, 20); cartStore.set(c); refreshCart();
+    toast(ITEMS[a].name + ' added to cart');
+    b.classList.add('added'); setTimeout(function () { b.classList.remove('added'); }, 900);
+  });
+  function inr(n) { return '₹' + Math.round(n).toLocaleString('en-IN'); }
+  function checkoutUrl(c) {
+    var q = ['AssociateTag=' + encodeURIComponent(TAG)], i = 1;
+    Object.keys(c).forEach(function (a) { if (c[a] > 0) { q.push('ASIN.' + i + '=' + a, 'Quantity.' + i + '=' + c[a]); i++; } });
+    return 'https://www.amazon.in/gp/aws/cart/add.html?' + q.join('&');
+  }
+  function renderCart() {
+    var c = cartStore.get(), keys = Object.keys(c).filter(function (a) { return ITEMS[a] && c[a] > 0; });
+    $('#cart-empty').hidden = keys.length > 0; $('#cart-full').hidden = keys.length === 0;
+    var total = 0, qty = 0;
+    $('#cart-lines').innerHTML = keys.map(function (a) {
+      var it = ITEMS[a], q = c[a]; total += it.price * q; qty += q;
+      return '<div class="cart-line"><a class="cl-img" href="' + ROOT + it.url + '" style="--bg:' + it.bg + '"><img src="' + ROOT + it.img + '" alt=""></a>' +
+        '<div class="cl-info"><a href="' + ROOT + it.url + '"><b>' + it.name + '</b></a><span>' + it.v + '</span><span class="cl-unit">' + inr(it.price) + ' each</span></div>' +
+        '<div class="qty" data-asin="' + a + '"><button data-d="-1" aria-label="Decrease quantity">−</button><span aria-live="polite">' + q + '</span><button data-d="1" aria-label="Increase quantity">+</button></div>' +
+        '<div class="cl-price">' + inr(it.price * q) + '<button class="linkbtn rm" data-asin="' + a + '">Remove</button></div></div>';
+    }).join('');
+    $('#cart-qty').textContent = qty; $('#cart-total').textContent = inr(total);
+    $('#checkout').href = checkoutUrl(c);
+  }
+  if (document.body.dataset.page === 'cart') {
+    $('#cart-lines').addEventListener('click', function (e) {
+      var b = e.target.closest('button'); if (!b) return;
+      var c = cartStore.get();
+      if (b.classList.contains('rm')) { delete c[b.dataset.asin]; }
+      else { var a = b.parentNode.dataset.asin; c[a] = Math.max(0, Math.min(20, (c[a] || 0) + (+b.dataset.d))); if (!c[a]) delete c[a]; }
+      cartStore.set(c); refreshCart();
+    });
+    $('#cart-clear').addEventListener('click', function () { if (window.confirm('Remove everything from your cart?')) { cartStore.set({}); refreshCart(); } });
+  }
+  document.addEventListener('cart-refresh', refreshCart);
+
   // ---------- variants (single / pack of 2) ----------
   $$('.variant').forEach(function (v) {
     v.addEventListener('click', function () {
@@ -86,6 +140,7 @@
       v.setAttribute('aria-pressed', 'true');
       var a = $('.buy-amz'); a.href = v.dataset.url;
       var p = $('.buy-price'); if (p) p.textContent = '₹' + v.dataset.price;
+      var m = $('.main-add'); if (m && v.dataset.asin) m.dataset.asin = v.dataset.asin;
     });
   });
 
@@ -138,5 +193,6 @@
 
   document.addEventListener('wishlist-refresh', function () { refreshWish(); if (document.body.dataset.page === 'wishlist') renderWishlist(); });
   refreshWish();
+  refreshCart();
   var y = $('#year'); if (y) y.textContent = new Date().getFullYear();
 })();

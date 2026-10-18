@@ -64,7 +64,19 @@ async function syncWishlist(user, profile) {
   setLocalWish(merged);
   if (merged.length !== cloud.length) await updateDoc(doc(db, 'customers', user.uid), { wishlist: merged, updatedAt: serverTimestamp() }).catch(() => {});
   document.dispatchEvent(new CustomEvent('wishlist-refresh'));
+  // cart: keep the larger quantity from cloud and this device
+  const cloudCart = (profile && profile.cart && typeof profile.cart === 'object') ? profile.cart : {};
+  let local = {}; try { local = JSON.parse(localStorage.getItem('grainley-cart') || '{}') || {}; } catch (e) {}
+  const mc = Object.assign({}, cloudCart);
+  Object.keys(local).forEach((a) => { mc[a] = Math.max(mc[a] || 0, local[a] || 0); });
+  try { localStorage.setItem('grainley-cart', JSON.stringify(mc)); } catch (e) {}
+  if (JSON.stringify(mc) !== JSON.stringify(cloudCart)) await updateDoc(doc(db, 'customers', user.uid), { cart: mc, updatedAt: serverTimestamp() }).catch(() => {});
+  document.dispatchEvent(new CustomEvent('cart-refresh'));
 }
+document.addEventListener('cart-change', (e) => {
+  if (!currentUser) return;
+  updateDoc(doc(db, 'customers', currentUser.uid), { cart: e.detail, updatedAt: serverTimestamp() }).catch(() => {});
+});
 document.addEventListener('wishlist-change', (e) => {
   if (!currentUser) return;
   updateDoc(doc(db, 'customers', currentUser.uid), { wishlist: e.detail, updatedAt: serverTimestamp() }).catch(() => {});
@@ -161,7 +173,7 @@ if (pf) pf.addEventListener('submit', async (e) => {
 const rv = $('#resend-verify');
 if (rv) rv.addEventListener('click', async (e) => { e.preventDefault(); if (currentUser) { await sendEmailVerification(currentUser).catch(() => {}); rv.textContent = 'Sent. Check your inbox.'; } });
 const lo = $('#logout');
-if (lo) lo.addEventListener('click', async () => { await signOut(auth); setLocalWish([]); location.replace(ROOT + 'index.html'); });
+if (lo) lo.addEventListener('click', async () => { await signOut(auth); setLocalWish([]); try { localStorage.removeItem('grainley-cart'); } catch (e) {} location.replace(ROOT + 'index.html'); });
 const del = $('#delete-account');
 if (del) del.addEventListener('click', async () => {
   const out = $('#delete-msg');
