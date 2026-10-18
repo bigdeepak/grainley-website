@@ -80,8 +80,8 @@ nav.main .hot::after{content:"NEW";font:700 9px/1 var(--body);background:var(--c
 .hero .visual{position:relative}
 .hero .visual img.family{width:100%;height:auto;filter:drop-shadow(0 26px 30px rgba(90,60,10,.25))}
 .hero .stamp{position:absolute;top:-6px;right:4%;width:126px;height:126px;border-radius:50%;background:var(--coral);color:#fff;display:grid;place-items:center;text-align:center;font:400 17px/1.05 var(--head);transform:rotate(10deg);border:3px solid var(--ink);box-shadow:5px 5px 0 var(--ink)}
-.valley{height:150px;background:url(../img/veggie-valley.webp) center/auto 100% repeat-x;border-top:2px solid var(--ink);margin-top:20px}
-@media (max-width:860px){.hero .grid{grid-template-columns:1fr}.hero{padding-top:34px}.hero .stamp{width:96px;height:96px;font-size:13px}.valley{height:100px}}
+.valley{display:block;width:100%;height:auto;margin-top:10px;margin-bottom:-2px}
+@media (max-width:860px){.hero .grid{grid-template-columns:1fr}.hero{padding-top:34px}.hero .stamp{width:96px;height:96px;font-size:13px}}
 
 /* trust strip */
 .trust{background:var(--ink);color:#fff6d6}
