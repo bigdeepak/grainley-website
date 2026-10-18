@@ -290,3 +290,34 @@ form.cform input:focus,form.cform textarea:focus{outline:none;border-color:var(-
 .toast.show{transform:translateX(-50%) translateY(0)}
 :focus-visible{outline:3px solid var(--teal);outline-offset:2px}
 @media (prefers-reduced-motion:reduce){*{transition:none!important;scroll-behavior:auto}}
+
+/* accounts */
+.acct-link{display:flex;align-items:center;gap:6px;text-decoration:none;font-weight:600;font-size:14px;padding:8px 12px;border-radius:999px;border:2px solid transparent;color:var(--ink)}
+.acct-link:hover{border-color:var(--ink);background:#fff}
+.acct-link svg{width:22px;height:22px}
+@media (max-width:900px){.acct-link .acct-label{display:none}.acct-link{padding:10px}}
+.auth-wrap{padding:50px 0 70px}
+.auth-grid{display:grid;grid-template-columns:1fr 1fr;gap:40px;align-items:start}
+.auth-side{padding-top:20px}
+.auth-side img{width:150px;margin-bottom:18px}
+.auth-side h2{font-size:clamp(36px,4.5vw,56px)}
+.auth-side h2 em{font-style:normal;color:var(--coral)}
+.auth-side p{color:var(--ink-2);font-size:17px}
+.auth-side ul{list-style:none;padding:0;margin:22px 0 0;display:grid;gap:12px}
+.auth-side li{display:flex;gap:10px;align-items:center;font-weight:600}
+.auth-side li svg{width:22px;height:22px;color:var(--coral-deep);flex:none}
+.auth-card .cform h1{font-size:32px;margin-bottom:4px}
+.cform small{font-weight:400;color:var(--ink-2)}
+.cform .two{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.cform label.check{display:flex;flex-direction:row;gap:10px;align-items:flex-start;font-weight:500}
+.cform label.check input{width:18px;height:18px;margin-top:2px;accent-color:var(--coral)}
+.form-msg{margin:0;padding:10px 14px;border-radius:12px;font-size:14px;font-weight:500}
+.form-msg.err{background:#ffe1dc;color:#9b1c12}
+.form-msg.ok{background:#e3f6d8;color:#22560f}
+.forgot{font-size:14px;font-weight:600;justify-self:end;margin-top:-6px}
+.switch{text-align:center;font-size:14px;margin:4px 0 0}
+.cform button[disabled]{opacity:.6;cursor:wait}
+.acct-grid{display:grid;grid-template-columns:1.3fr 1fr;gap:26px;align-items:start}
+.acct-grid .cards-info .btn{justify-content:center}
+.linkbtn{background:none;border:0;color:#9b1c12;text-decoration:underline;font:500 13px var(--body);cursor:pointer;padding:0}
+@media (max-width:860px){.auth-grid,.acct-grid{grid-template-columns:1fr}.auth-side{padding-top:0}.auth-side img{width:100px}.cform .two{grid-template-columns:1fr}}

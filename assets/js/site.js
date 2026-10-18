@@ -25,6 +25,7 @@
     var list = store.get(), id = b.dataset.id, i = list.indexOf(id);
     if (i > -1) { list.splice(i, 1); toast('Removed from wishlist'); } else { list.push(id); toast('Saved to your wishlist'); }
     store.set(list); refreshWish();
+    document.dispatchEvent(new CustomEvent('wishlist-change', { detail: list }));
     if (document.body.dataset.page === 'wishlist') renderWishlist();
   });
 
@@ -135,6 +136,7 @@
     location.href = 'mailto:wecare@grainleyfoods.com?subject=' + encodeURIComponent('Website enquiry: ' + f.get('topic')) + '&body=' + encodeURIComponent(body);
   });
 
+  document.addEventListener('wishlist-refresh', function () { refreshWish(); if (document.body.dataset.page === 'wishlist') renderWishlist(); });
   refreshWish();
   var y = $('#year'); if (y) y.textContent = new Date().getFullYear();
 })();

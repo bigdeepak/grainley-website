@@ -14,7 +14,7 @@
 <link rel="apple-touch-icon" href="assets/img/apple-touch-icon.png">
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="assets/css/site.css?v=6">
+<link rel="stylesheet" href="assets/css/site.css?v=7">
 
 </head>
 <body data-page="info">
@@ -34,6 +34,7 @@
       <div class="results" role="listbox"></div>
     </form>
     <div class="hicons">
+      <a class="acct-link" href="login.html" aria-label="Login or sign up"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="8" r="4"/><path d="M4 21c1.5-4 4.5-6 8-6s6.5 2 8 6"/></svg><span class="acct-label">Login</span></a>
       <a class="icon-btn" href="wishlist.html" aria-label="Wishlist"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 21s-7.5-4.6-9.5-9.2C1 8.4 3.3 5 6.8 5c2 0 3.6 1.1 5.2 3 1.6-1.9 3.2-3 5.2-3C20.7 5 23 8.4 21.5 11.8 19.5 16.4 12 21 12 21z"/></svg><span class="count wish-count">0</span></a>
       <a class="btn btn-amz" href="https://www.amazon.in/s?k=Grainley+Foods" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"><path d="M5 8h14l-1.2 12H6.2z"/><path d="M9 8V6a3 3 0 016 0v2"/></svg><span>Shop on Amazon</span></a>
     </div>
@@ -54,11 +55,13 @@
 <section class="pagehead doodle"><div class="wrap"><div class="crumbs"><a href="index.html">Home</a> › Privacy Policy</div><h1>Privacy <em>policy</em></h1><p>What we collect on this website and how we use it.</p></div></section>
 <div class="wrap"><div class="prose">
 <p class="note">Last updated: 18 Oct 2026</p>
-<h2>What we collect</h2><p>This website does not ask you to create an account and does not collect payment details. Orders are placed on Amazon, which handles your order data under its own privacy notice.</p>
-<h2>Your wishlist</h2><p>When you save products to your wishlist, the list is stored only in your own browser on your device. We cannot see it, and clearing your browser data removes it.</p>
+<h2>What we collect</h2><p>You can browse this website without an account. If you create a Grainley account, we collect your name and email address, and, if you choose to give them, your phone number, city and birthday. We also save your wishlist to your account. We never collect payment details: orders are placed on Amazon, which handles your order data under its own privacy notice.</p>
+<h2>Why we use it</h2><p>We use your account details to let you log in, save your wishlist across devices, reply to your messages and, only if you tick the box to agree, send you offers, new launches and birthday treats. You can turn offers off at any time from My Account.</p>
+<h2>Where it is stored</h2><p>Account details are stored securely with Google Firebase on servers in Mumbai, India. Passwords are handled by Firebase and are never visible to us. We do not sell or rent your personal information.</p>
+<h2>Your wishlist without an account</h2><p>If you save products without logging in, the list is stored only in your own browser on your device.</p>
 <h2>Messages you send us</h2><p>If you email or call us, we use your name, contact details and message only to reply to you and to handle your request.</p>
 <h2>Third-party services</h2><p>The website loads fonts from Google Fonts and links to Amazon, Instagram and Google Maps. Those services may receive basic technical information, such as your IP address, when your browser connects to them. We do not use advertising or tracking cookies on this website.</p>
-<h2>Your rights</h2><p>You can ask us to tell you what personal information we hold about you, correct it, or delete it, by writing to <a href="mailto:wecare@grainleyfoods.com">wecare@grainleyfoods.com</a>.</p>
+<h2>Your rights</h2><p>You can see and edit your details in My Account, and delete your account and all saved details from there at any time. You can also ask us what personal information we hold about you, or ask us to correct or delete it, by writing to <a href="mailto:wecare@grainleyfoods.com">wecare@grainleyfoods.com</a>.</p>
 <h2>Changes</h2><p>If we change how we handle information, we will update this page and the date above.</p></div></div>
 </main>
 <footer class="site">
@@ -81,7 +84,9 @@
         <li><a href="about.html">About Us</a></li><li><a href="contact.html">Contact Us</a></li><li><a href="faq.html">FAQs</a></li>
         <li><a href="shipping-policy.html">Shipping &amp; Delivery</a></li><li><a href="return-refund.html">Returns &amp; Refunds</a></li>
         <li><a href="terms.html">Terms &amp; Conditions</a></li><li><a href="privacy-policy.html">Privacy Policy</a></li></ul></div>
-      <div><h4>Your Orders</h4><ul>
+      <div><h4>My Account</h4><ul>
+        <li><a href="account.html">My Account</a></li>
+        <li><a href="login.html">Login / Sign up</a></li>
         <li><a href="wishlist.html">My Wishlist</a></li>
         <li><a href="https://www.amazon.in/gp/css/order-history" target="_blank" rel="noopener">Track an order</a></li>
         <li><a href="https://www.amazon.in/gp/css/returns/homepage.html" target="_blank" rel="noopener">Return an item</a></li>
@@ -99,6 +104,7 @@
   </div>
 </footer>
 <div class="lb" aria-hidden="true"><button aria-label="Close">×</button><img alt=""></div>
-<script src="assets/js/catalog.js?v=6"></script>
-<script src="assets/js/site.js?v=6"></script>
+<script src="assets/js/catalog.js?v=7"></script>
+<script src="assets/js/site.js?v=7"></script>
+<script type="module" src="assets/js/auth.js?v=1"></script>
 </body></html>
